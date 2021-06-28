@@ -4,6 +4,8 @@ import {bluzelle} from "@bluzelle/sdk-js"
 import axios from "axios"
 import DiscordButton, { MessageButton } from "discord-buttons"
 
+const uuid = "0f4016c4-47f6-4cdb-ad48-4a6c3971bc24" 
+
 const sdk = await bluzelle({
     mnemonic:"trade lobster opera sauce rapid basket clown diary cattle desert sand decade planet woman symptom vintage track test chalk month cinnamon hello alien west",
     url:"wss://client.sentry.testnet.private.bluzelle.com:26657",
@@ -15,7 +17,7 @@ const client = new Discord.Client()
 const dButton = DiscordButton(client);
 const prefix = "."
 
-// .pring
+// .ping
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
@@ -64,7 +66,7 @@ client.on("message",(message) => {
             let embed = new Discord.MessageEmbed()
             .setColor('#FFFFFF')
             .setTitle(`The price in USD is $${response.data.bluzelle.usd}`)
-            .setDescription('Price Change(24h): ' + (change >= 0 ? '+' : '') + change)
+            .setDescription('Price Change(24h): ' + (change >= 0 ? '+' : '') + change + "%")
             message.reply(embed);
             // message.reply('', {
             //     buttons: [rButton],
@@ -81,6 +83,48 @@ client.on("message",(message) => {
 //         console.log(button);
 //     }
 // })
+
+client.on("message",(message) => {
+    if(message.author.bot) return;
+    if(!message.content.startsWith(prefix)) return;
+
+    if(message.content.startsWith(".validators")){
+        const net = message.content.split(" ")[1]
+        switch(net){
+            case "testnet":
+                axios.get("https://client.sentry.testnet.private.bluzelle.com:26657/validators").then((response) => {
+                    const reply = `Block Height ${response.data.result.block_height} Count:${response.data.result.count}`
+                    message.reply(reply)
+                })
+                break
+            case "mainnet":
+                axios.get("http://sandbox.sentry.net.bluzelle.com:26657/validators").then((response) => {
+                    const reply = `Block Height ${response.data.result.block_height} Count:${response.data.result.count}`
+                    message.reply(reply)
+                })
+                break
+            default:
+                axios.get("https://client.sentry.testnet.private.bluzelle.com:26657/validators").then((response) => {
+                    const reply = `Block Height ${response.data.result.block_height} Count:${response.data.result.count}`
+                    message.reply(reply)
+                })
+        }
+    }
+})
+
+client.on("message",(message) => {
+    if(message.author.bot) return;
+    if(!message.content.startsWith(prefix)) return;
+
+    if(message.content.startsWith(".fetchDB")){
+        sdk.db.q.Read({
+            uuid:uuid,
+            key:"test"
+        }).then(response => {
+            message.reply(new TextDecoder().decode(response.value))
+        })
+    }
+})
 
 client.login(config.BOT_TOKEN)
 
