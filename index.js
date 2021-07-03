@@ -72,7 +72,7 @@ client.on("message",(message) => {
     }
 })
 
-// .price
+// command: ".price [currency]"
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
@@ -105,7 +105,7 @@ client.on("message",(message) => {
 })
 
 
-// command ".market"
+// command ".market [currency]"
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
@@ -140,7 +140,7 @@ client.on("message",(message) => {
     }
 })
 
-// .blocks
+// command ".blocks [testnet | mainnet]"
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
@@ -180,7 +180,7 @@ client.on("message",(message) => {
 })
 
 
-//.validators
+// command ".validators [testnet | mainnet]"
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
@@ -219,6 +219,7 @@ client.on("message",(message) => {
     }
 })
 
+// action of mainnet and testnet buttons
 client.on('clickButton', (button) => {
     if (button.id == 'mainnet_validators') {
         button.defer();
@@ -235,6 +236,7 @@ client.on('clickButton', (button) => {
     }
 })
 
+// message embed of information on validators(mainnet)
 function sendMainnetValidators(message) {
     axios.get("http://sandbox.sentry.net.bluzelle.com:26657/validators").then((response) => {
         let embed = new Discord.MessageEmbed()
@@ -247,6 +249,7 @@ function sendMainnetValidators(message) {
     })
 }
 
+// message embed of information on validators(testnet)
 function sendTestnetValidators(message) {
     axios.get("https://client.sentry.testnet.private.bluzelle.com:26657/validators").then((response) => {
         let embed = new Discord.MessageEmbed()
@@ -259,6 +262,7 @@ function sendTestnetValidators(message) {
     })
 }
 
+// message embed of information on blocks(mainnet)
 function sendMainnetBlocks(message) {
     axios.get("http://sandbox.sentry.net.bluzelle.com:26657/status")
     .then((response) => {
@@ -271,6 +275,7 @@ function sendMainnetBlocks(message) {
     })
 }
 
+// message embed of information on blocks(testnet)
 function sendTestnetBlocks(message) {
     axios.get("https://client.sentry.testnet.private.bluzelle.com:26657/status")
     .then((response) => {
@@ -283,6 +288,7 @@ function sendTestnetBlocks(message) {
     })
 }
 
+// finding total votiong power of all validators 
 function getTotalVotingPower(validators) {
     let vp = 0;
     for (let i = 0; i < validators.length; ++i) {
@@ -291,6 +297,7 @@ function getTotalVotingPower(validators) {
     return vp
 }
 
+// returns object based on the currency
 function getCurrencyOf(obj, currency) {
     switch(currency) {
         case "aed":
@@ -448,7 +455,7 @@ client.on("message",(message) => {
             address: sdk.db.address
         })
         .then(resp => {
-            console.log(resp);
+            // console.log(resp);
             let embed = { 
                 'title': 'Key Created',
                 'fields': [
@@ -464,6 +471,7 @@ client.on("message",(message) => {
     }
 })
 
+// converts milliseconds to seconds
 function msToTime(ms) {
     return (ms / 1000).toFixed(2) + " seconds ago";
 }
