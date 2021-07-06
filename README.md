@@ -83,7 +83,10 @@ To get a local copy up and running follow these simple steps.
    * You also need to copy the bot’s authentication token by clicking Click to Reveal Token and copying the token that appears. and paste it in the .env file
    ![21](images/21.png)
   
-
+4. Install all the required dependencies.</br>
+    ```npm install```
+5. Finally execute the node application.</br>
+    ```node index.js```
 
 
 <!-- USAGE EXAMPLES -->
