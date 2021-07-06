@@ -477,6 +477,3 @@ function msToTime(ms) {
 }
 
 client.login(config.BOT_TOKEN)
-
-
-
