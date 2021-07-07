@@ -25,7 +25,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Bluzelle Discord Bot has 5 commands for retrieving data from bluzelle mainnet, bluzelle testnet and coingecko.
+This Bluzelle Discord Bot has 7 commands which retrieves information from bluzelle mainnet, bluzelle testnet and coingecko servers.
 </br>
 </br>
 [challenge](https://gitcoin.co/issue/bluzelle/Gitcoin10Hack/7/100025962)
