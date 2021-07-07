@@ -197,11 +197,14 @@ client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
 
-    if(message.content.startsWith(".balance")){
-        const args = message.content.split(" ")
+    const parts = message.content.split(" ")
+    if(parts[0] == ".balance") {
+        const address = parts[1]
+        if (address == null) return
+
         sdk.bank.q.Balance({
-            address:args[1],
-            denom:"ubnt"
+            address: address,
+            denom: "ubnt"
         }).then((response) => {
             let embed = new Discord.MessageEmbed()
             .setColor('#FFFFFF')
@@ -209,6 +212,7 @@ client.on("message",(message) => {
             .setDescription(commaNumber(response.balance.amount) + " BLZ")
             message.author.send(embed)
         })
+
     }
 })
 
@@ -226,7 +230,6 @@ client.on("message",(message) => {
             .addField('Address', response.data.result.address, inline)
             .addField('Mnemonic', response.data.result.mnemonic, inline)
             message.author.send(embed)
-    
         })
     }
 })
