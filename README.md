@@ -25,7 +25,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Bluzelle Discord Bot has 5 commands for retrieving data from bluzelle mainnet, bluzelle testnet and coingecko. 
+Bluzelle Discord Bot has 5 commands for retrieving data from bluzelle mainnet, bluzelle testnet and coingecko.
+</br>
+</br>
+[challenge](https://gitcoin.co/issue/bluzelle/Gitcoin10Hack/7/100025962)
 
 ### Built With
 
@@ -33,8 +36,6 @@ Bluzelle Discord Bot has 5 commands for retrieving data from bluzelle mainnet, b
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
@@ -80,13 +81,18 @@ To get a local copy up and running follow these simple steps.
    git clone https://github.com/mushroomgenie/DiscordBluzelleBot.git
    ```
    or download it directly
+   * Rename '.env.example' file to '.env'.
    * You also need to copy the bot’s authentication token by clicking Click to Reveal Token and copying the token that appears. and paste it in the .env file
    ![21](images/21.png)
   
 4. Install all the required dependencies.</br>
-    ```npm install```
+    ```sh
+    npm install
+    ```
 5. Finally execute the node application.</br>
-    ```node index.js```
+    ```sh
+    node index.js
+    ```
 
 
 <!-- USAGE EXAMPLES -->
@@ -108,6 +114,12 @@ Accepted commands in the Bluzelle Bot
     
  * About Blocks:  ```.blocks [testnet | mainnet]```
     </br>Example: .blocks t, .blocks main
+    
+ * Balance of Account(use Direct message):  ```.balance [address]```
+    </br>Example: .balance your_bluzelle_address
+
+ * Mint testnet Account:  ```.mint```
+    </br>Example: .mint
 
 Accepted currencies for price and market commands</br>
 aed, ars, aud, bch, bdt, bhd, bmd, bnb, brl, btc, cad, chf, clp, cny, czk, dkk, dot, eos, eth, eur, gbp, hkd, huf, idr, ils, inr, jpy, krw, kwd, lkr, ltc, mmk, mxn, myr, ngn, nok, nzd, php, pkr, pln, rub, sar, sek, sgd, thb, try, twd, uah, usd, vef, vnd, xag, xau, xdr, xlm, xrp, yfi, zar, bits, link, sats
