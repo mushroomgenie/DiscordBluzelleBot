@@ -45,7 +45,7 @@ This Bluzelle Discord Bot has 7 commands which retrieves information from bluzel
 
 ### Installation
 
-1. Setting Up a Discord Bot and get the bot’s token
+#### step 1. Setting Up a Discord Bot and get the bot’s token
    * In order to register a bot on the Discord platform, use the [Discord application dashboard](https://discord.com/developers/applications/). Here developers can create Discord applications including Discord bots.
   
    ![11](images/11.png)
@@ -76,20 +76,22 @@ This Bluzelle Discord Bot has 7 commands which retrieves information from bluzel
    * You’ll now have the Discord bot on the members list in the server you added the bot to under offline.
    
    ![19](images/19.png)
-3. Clone the repo
+#### Step 3. Clone the repo and rename
    ```sh
    git clone https://github.com/mushroomgenie/DiscordBluzelleBot.git
    ```
    or download it directly
+   
    * Rename '.env.example' file to '.env'.
    * You also need to copy the bot’s authentication token by clicking Click to Reveal Token and copying the token that appears. and paste it in the .env file
    ![21](images/21.png)
+   ![22](images/22.png)
   
-4. Install all the required dependencies.</br>
+#### Step 4. Install all the required dependencies.</br>
     ```sh
     npm install
     ```
-5. Finally execute the node application.</br>
+#### Step 5. Finally execute the node application.</br>
     ```sh
     node index.js
     ```
@@ -124,6 +126,9 @@ Accepted commands in the Bluzelle Bot
 Accepted currencies for price and market commands</br>
 aed, ars, aud, bch, bdt, bhd, bmd, bnb, brl, btc, cad, chf, clp, cny, czk, dkk, dot, eos, eth, eur, gbp, hkd, huf, idr, ils, inr, jpy, krw, kwd, lkr, ltc, mmk, mxn, myr, ngn, nok, nzd, php, pkr, pln, rub, sar, sek, sgd, thb, try, twd, uah, usd, vef, vnd, xag, xau, xdr, xlm, xrp, yfi, zar, bits, link, sats
 
+</br>screenshots
+
+![32](images/32.png)
 
 <!-- LICENSE -->
 ## License
