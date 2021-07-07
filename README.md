@@ -130,6 +130,22 @@ aed, ars, aud, bch, bdt, bhd, bmd, bnb, brl, btc, cad, chf, clp, cny, czk, dkk, 
 
 ![32](images/32.png)
 
+<!-- Contact Us -->
+## Contact Us
+Satya Snehith
+</br>  
+Email - nsssnehit76@gmail.com 
+</br>
+GitHub - https://github.com/SatyaSnehith 
+</br>
+</br>
+Mashrukh
+</br> 
+Email -  mashthegreat@gmail.com
+</br>
+</br>
+GitHub - https://github.com/mushroomgenie
+
 <!-- LICENSE -->
 ## License
 
