@@ -87,14 +87,14 @@ This Bluzelle Discord Bot has 7 commands which retrieves information from bluzel
    ![21](images/21.png)
    ![22](images/22.png)
   
-#### Step 4. Install all the required dependencies.</br>
-    ```sh
-    npm install
-    ```
-#### Step 5. Finally execute the node application.</br>
-    ```sh
-    node index.js
-    ```
+#### Step 4. Install all the required dependencies.
+  ```
+  npm install
+  ```
+#### Step 5. Finally execute the node application.
+  ```
+  node index.js
+  ```
 
 
 <!-- USAGE EXAMPLES -->
@@ -132,8 +132,8 @@ aed, ars, aud, bch, bdt, bhd, bmd, bnb, brl, btc, cad, chf, clp, cny, czk, dkk, 
 
 <!-- Contact Us -->
 ## Contact Us
-Satya Snehith
-</br>  
+
+Satya Snehith</br>
 Email - nsssnehit76@gmail.com 
 </br>
 GitHub - https://github.com/SatyaSnehith 
@@ -142,7 +142,6 @@ GitHub - https://github.com/SatyaSnehith
 Mashrukh
 </br> 
 Email -  mashthegreat@gmail.com
-</br>
 </br>
 GitHub - https://github.com/mushroomgenie
 
