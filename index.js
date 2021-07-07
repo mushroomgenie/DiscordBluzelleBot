@@ -211,6 +211,8 @@ client.on("message",(message) => {
             .setTitle('Balance')
             .setDescription(commaNumber(response.balance.amount) + " BLZ")
             message.author.send(embed)
+        }).catch(error => {
+            message.author.send("Address is not valid")
         })
 
     }
