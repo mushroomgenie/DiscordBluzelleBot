@@ -9,7 +9,7 @@ dotenv.config()
 const uuid = "0f4016c4-47f6-4cdb-ad48-4a6c3971bc24" 
 
 const sdk = await bluzelle({
-    mnemonic:"trade lobster opera sauce rapid basket clown diary cattle desert sand decade planet woman symptom vintage track test chalk month cinnamon hello alien west",
+    mnemonic:process.env.MNEMONIC,
     url:"wss://client.sentry.testnet.private.bluzelle.com:26657",
     maxGas:100000000,
     gasPrice:0.002
@@ -57,18 +57,18 @@ client.on("message",(message) => {
     }
 })
 
-// .read {address}
+// .balance {address}
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
 
-    if(message.content.startsWith(".read")){
+    if(message.content.startsWith(".balance")){
         const args = message.content.split(" ")
         sdk.bank.q.Balance({
             address:args[1],
             denom:"ubnt"
         }).then((response) => {
-            message.reply(response.balance.amount)
+            message.author.send(response.balance.amount)
         })
     }
 })
@@ -443,32 +443,6 @@ client.on("message",(message) => {
         }).then(response => {
             message.reply(new TextDecoder().decode(response.value))
         })
-    }
-})
-
-client.on("message",(message) => {
-    if(message.author.bot) return;
-    if(!message.content.startsWith(prefix)) return;
-
-    if(message.content === ".createKey") {
-        sdk.db.q.MyKeys({
-            uuid: uuid,
-            address: sdk.db.address
-        })
-        .then(resp => {
-            // console.log(resp);
-            let embed = { 
-                'title': 'Key Created',
-                'fields': [
-                    {
-                        name: 'myUuid',
-                        value: resp
-                    }
-                ]
-            };
-            message.send({embed})
-        })
-        .catch(err => {})
     }
 })
 
