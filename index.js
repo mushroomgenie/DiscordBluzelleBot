@@ -1,9 +1,10 @@
 import Discord from "discord.js"
-import config from "./config.json"
 import {bluzelle} from "@bluzelle/sdk-js"
 import axios from "axios"
 import commaNumber from 'comma-number'
 import DiscordButton, { MessageButton } from "discord-buttons"
+import dotenv from "dotenv"
+dotenv.config()
 
 const uuid = "0f4016c4-47f6-4cdb-ad48-4a6c3971bc24" 
 
@@ -476,7 +477,7 @@ function msToTime(ms) {
     return (ms / 1000).toFixed(2) + " seconds ago";
 }
 
-client.login(config.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN)
 
 
 
