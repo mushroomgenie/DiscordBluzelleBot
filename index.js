@@ -35,43 +35,16 @@ client.on("message",(message) => {
         .addField('Current price:  `.price [currency]`', 'Example: **.price inr**, **.price eur**\n📈')
         .addField('About Market Cap:  `.market [currency]`', 'Example: **.market inr**, **.market eur**\n☑️')
         .addField('About Active Validators:  `.validators [testnet | mainnet]`', 'Example: **.validators t**, **.validators main**\n🧱')
-        .addField('About Blocks:  `.blocks [testnet | mainnet]`', 'Example: **.blocks t**, **.blocks main**\n💱')
+        .addField('About Blocks:  `.blocks [testnet | mainnet]`', 'Example: **.blocks t**, **.blocks main**\n⚖️')
+        .addField('Balance of Account(use Direct message):  `.balance [address]`', 'Example: **.balance your_bluzelle_address**\n🏦')
+        .addField('Mint testnet Account:  `.mint`', 'Example: **.mint**\n💱')
         .addField('Accepted currencies for *price* and *market* commands', 'aed, ars, aud, bch, bdt, bhd, bmd, bnb, brl, btc, cad, chf, clp, cny, czk, dkk, dot, eos, eth, eur, gbp, hkd, huf, idr, ils, inr, jpy, krw, kwd, lkr, ltc, mmk, mxn, myr, ngn, nok, nzd, php, pkr, pln, rub, sar, sek, sgd, thb, try, twd, uah, usd, vef, vnd, xag, xau, xdr, xlm, xrp, yfi, zar, bits, link, sats')
         message.reply(embed);
     }
 })
 
 
-// .ping
-client.on("message",(message) => {
-    if(message.author.bot) return;
-    if(!message.content.startsWith(prefix)) return;
 
-    const commandBody = message.content.slice(prefix.length);
-    const args = commandBody.split(' ')
-    const command = args.shift().toLocaleLowerCase()
-
-    if(command === "ping"){
-        const timeTaken = Date.now() - message.createdTimestamp;
-        message.author.send(`Pong!Time taken = ${timeTaken}`)
-    }
-})
-
-// .balance {address}
-client.on("message",(message) => {
-    if(message.author.bot) return;
-    if(!message.content.startsWith(prefix)) return;
-
-    if(message.content.startsWith(".balance")){
-        const args = message.content.split(" ")
-        sdk.bank.q.Balance({
-            address:args[1],
-            denom:"ubnt"
-        }).then((response) => {
-            message.author.send(response.balance.amount)
-        })
-    }
-})
 
 // command: ".price [currency]"
 client.on("message",(message) => {
@@ -141,6 +114,45 @@ client.on("message",(message) => {
     }
 })
 
+// command ".validators [testnet | mainnet]"
+client.on("message",(message) => {
+    if(message.author.bot) return;
+    if(!message.content.startsWith(prefix)) return;
+
+    const parts = message.content.split(" ")
+
+    if(parts[0] === ".validators") {
+        const net = parts[1]
+         
+        const mvButton = new MessageButton()
+        .setStyle('green')
+        .setLabel('mainnet')
+        .setID('mainnet_validators')
+        
+        const tvButton = new MessageButton()
+        .setLabel('testnet')
+        .setStyle('blurple')
+        .setID('testnet_validators')
+
+        switch(net) {
+            case "t":
+            case "test":
+            case "testnet":
+                sendTestnetValidators(message.channel)
+                break
+            case "m":
+            case "main":
+            case "mainnet":
+                sendMainnetValidators(message.channel)
+                break
+            default:
+                message.reply('**Validators of?**', {
+                    buttons: [mvButton, tvButton],
+                })
+        }
+    }
+})
+
 // command ".blocks [testnet | mainnet]"
 client.on("message",(message) => {
     if(message.author.bot) return;
@@ -180,43 +192,42 @@ client.on("message",(message) => {
     }
 })
 
-
-// command ".validators [testnet | mainnet]"
+// .balance {address}
 client.on("message",(message) => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
 
-    const parts = message.content.split(" ")
+    if(message.content.startsWith(".balance")){
+        const args = message.content.split(" ")
+        sdk.bank.q.Balance({
+            address:args[1],
+            denom:"ubnt"
+        }).then((response) => {
+            let embed = new Discord.MessageEmbed()
+            .setColor('#FFFFFF')
+            .setTitle('Balance')
+            .setDescription(commaNumber(response.balance.amount) + " BLZ")
+            message.author.send(embed)
+        })
+    }
+})
 
-    if(parts[0] === ".validators") {
-        const net = parts[1]
-         
-        const mvButton = new MessageButton()
-        .setStyle('green')
-        .setLabel('mainnet')
-        .setID('mainnet_validators')
-        
-        const tvButton = new MessageButton()
-        .setLabel('testnet')
-        .setStyle('blurple')
-        .setID('testnet_validators')
+// command ".mint"
+client.on("message",(message) => {
+    if(message.author.bot) return;
+    if(!message.content.startsWith(prefix)) return;
 
-        switch(net) {
-            case "t":
-            case "test":
-            case "testnet":
-                sendTestnetValidators(message.channel)
-                break
-            case "m":
-            case "main":
-            case "mainnet":
-                sendMainnetValidators(message.channel)
-                break
-            default:
-                message.reply('**Validators of?**', {
-                    buttons: [mvButton, tvButton],
-                })
-        }
+    if(message.content === ".mint") {
+        axios.get("https://client.sentry.testnet.private.bluzelle.com:1317/mint")
+        .then((response) => {
+            let embed = new Discord.MessageEmbed()
+            .setColor('#FFFFFF')
+            .setTitle('Mint')
+            .addField('Address', response.data.result.address, inline)
+            .addField('Mnemonic', response.data.result.mnemonic, inline)
+            message.author.send(embed)
+    
+        })
     }
 })
 
@@ -424,27 +435,8 @@ function getCurrencyOf(obj, currency) {
         case "sats":
             return obj.sats
     }
-            return obj.usd
+    return obj.usd
 }
-
-client.on("message", (message) => {
-    if(message.author.bot) return;
-    // console.log(message);
-})
-
-client.on("message",(message) => {
-    if(message.author.bot) return;
-    if(!message.content.startsWith(prefix)) return;
-
-    if(message.content.startsWith(".fetchDB")){
-        sdk.db.q.Read({
-            uuid:uuid,
-            key:"test"
-        }).then(response => {
-            message.reply(new TextDecoder().decode(response.value))
-        })
-    }
-})
 
 // converts milliseconds to seconds
 function msToTime(ms) {
@@ -452,3 +444,5 @@ function msToTime(ms) {
 }
 
 client.login(process.env.BOT_TOKEN)
+
+console.log("Bot started")
