@@ -15,7 +15,6 @@ const sdk = await bluzelle({
     gasPrice:0.002
 })
 
-
 const client = new Discord.Client()
 DiscordButton(client)
 
@@ -42,8 +41,6 @@ client.on("message",(message) => {
         message.reply(embed);
     }
 })
-
-
 
 
 // command: ".price [currency]"
