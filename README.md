@@ -16,6 +16,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#test">Test</a></li>
+    <li><a href="#contact">Contact</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -130,8 +132,14 @@ aed, ars, aud, bch, bdt, bhd, bmd, bnb, brl, btc, cad, chf, clp, cny, czk, dkk, 
 
 ![32](images/32.png)
 
-<!-- Contact Us -->
-## Contact Us
+
+<!-- Test -->
+## Test
+Go to [Test with Jest](/jest)
+
+
+<!-- Contact -->
+## Contact
 
 Satya Snehith</br>
 Email - nsssnehit76@gmail.com 
