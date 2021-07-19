@@ -10,6 +10,6 @@
     "comma-number": "^2.1.0",
     "discord-buttons": "^3.2.1",
     "discord.js": "^12.5.3",
-    "dotenv": "^10.0.0",
+    "dotenv": "^10.0.0"
   }
 }
