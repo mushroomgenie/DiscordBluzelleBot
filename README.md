@@ -65,16 +65,16 @@ This Bluzelle Discord Bot has 7 commands which retrieves information from bluzel
    ![15](images/15.png)
    * navigate to the OAuth2 tab of the application dashboard. To create an invite, scroll down and select bot under scopes.
    
-   ![16](images/16.png)
-   * You must also set permissions to control what actions your bot can perform in guilds. select 'Send Messages'. Copy the link with the Copy button (under scopes).
+   ![16](images/16_0.png)
+   * You must also set permissions to control what actions your bot can perform in guilds. select the following permissions. Copy the link with the Copy button (under scopes).
    
-   ![17](images/17_0.png)
+   ![17](images/17_1.png)
    * Next, add the bot to a server. Follow the invite link you just created. You can add the bot to any server you own, or have administrator permissions in, from the drop-down menu. Now click Continue.
     
    ![18](images/18.png)
-   * Ensure you have the tickbox next to 'Send Messages' ticked, this will grant the bot permissions. Then click Authorize.
+   * Ensure that you have all the tickboxes ticked, this will grant the bot permissions. Then click Authorize.
     
-   ![110](images/110_0.png)
+   ![110](images/110_1.png)
    * You’ll now have the Discord bot on the members list in the server you added the bot to under offline.
    
    ![19](images/19.png)
