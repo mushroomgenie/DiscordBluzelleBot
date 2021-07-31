@@ -6,6 +6,8 @@ import DiscordButton, { MessageButton } from "discord-buttons"
 import dotenv from "dotenv"
 dotenv.config()
 
+const uuid = "0f4016c4-47f6-4cdb-ad48-4a6c3971bc24" 
+
 const sdk = await bluzelle({
     mnemonic:process.env.MNEMONIC,
     url:"wss://client.sentry.testnet.private.bluzelle.com:26657",
@@ -13,8 +15,7 @@ const sdk = await bluzelle({
     gasPrice:0.002
 })
 
-const client = new Discord.Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES'] } });
-
+const client = new Discord.Client()
 DiscordButton(client)
 
 const prefix = "."
