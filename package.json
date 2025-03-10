@@ -6,7 +6,7 @@
   "type": "module",
   "dependencies": {
     "@bluzelle/sdk-js": "^1.1.5",
-    "axios": "^0.21.1",
+    "axios": "^1.8.2",
     "comma-number": "^2.1.0",
     "discord-buttons": "^3.2.1",
     "discord.js": "^12.5.3",
